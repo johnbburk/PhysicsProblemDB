@@ -37,6 +37,112 @@ Route::get('/', function()
 	return View::make('home.index');
 });
 
+Route::get('admin', function(){
+		echo "Welcome ";
+		echo Auth::user()->name;
+		echo ", you made it to admin. I see you're from ";
+		echo Auth::user()->school;
+		echo ".";
+});
+
+Route::get('login', function() {
+
+	// display the view with the login form
+	return View::make('pages.login');
+
+});
+
+Route::get('newuser', function(){
+		return VIEW::make('pages.newuser');
+});
+
+Route::post('newuser', function(){
+		$name=Input::get('name');
+		$school=Input::get('school');
+		$password=Input::get('password');
+		$hpassword=Hash::make($password);
+		$user=new User(array(
+			'name'=>$name,
+			'password'=>$hpassword,
+			'school'=>$school
+			));
+		$user->save();
+});
+
+Route::get('check', function() {
+		
+		$u1=User::find(1);
+		print_r($u1->to_array());
+		$cred=array('username'=>'Andy', 'password'=>'hithere');
+		If (Auth::attempt($cred)){
+			echo "yep";
+		} else {
+			echo "nope";
+};});
+
+Route::get('insertproblem', function() {
+		$rand=rand();
+		$prob = array(
+			'text'  => "My super cool problem number $rand",
+			);
+		$user = User::find(1);
+		$user->problems()->insert($prob);
+});
+
+Route::get('inserttag', array('before' => 'auth', function() {
+			$rand=rand();
+			$tag = array(
+				'tag'  => "tag$rand",
+				'user_id' => Auth::user()->id
+				);
+			$prob = Problem::find(1);
+			$prob->tags()->insert($tag);
+		
+}));
+
+Route::get('listproblems', array('before' => 'auth', function() {
+		$uid=Auth::user()->id;
+		$user=User::find($uid);
+		$probs=$user->problems;
+		foreach ($probs AS $problem) {
+			echo $problem->text;
+			echo " has tags: ";
+			$tags=$problem->tags;
+			foreach ($tags AS $tag) {
+				echo $tag->tag;
+				echo ", ";
+			};
+			echo "<br/>";
+		};
+}));
+
+Route::post('login', function() {
+
+	// get the username and password from the POST
+	// data using the Input class
+	$username = Input::get('username');
+	$password = Input::get('password');
+
+	// call Auth::attempt() on the username and password
+	// to try to login, the session will be created
+	// automatically on success
+	$credentials=array('username'=>$username, 'password'=>$password);
+	if ( Auth::attempt($credentials) )
+	{
+		// it worked, redirect to the admin route
+		return Redirect::to('admin');
+	}
+	else
+	{
+		// login failed, show the form again and
+		// use the login_errors data to show that
+		// an error occured
+		return Redirect::to('login')
+			->with('login_errors', true);
+	}
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
