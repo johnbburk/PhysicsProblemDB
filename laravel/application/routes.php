@@ -39,9 +39,9 @@ Route::get('/', function()
 
 Route::get('admin', function(){
 		echo "Welcome ";
-		echo Auth::user()->name;
+		echo Auth::user()->firstname;
 		echo ", you made it to admin. I see you're from ";
-		echo Auth::user()->school;
+		echo Auth::user()->institution;
 		echo ".";
 });
 
@@ -57,16 +57,34 @@ Route::get('newuser', function(){
 });
 
 Route::post('newuser', function(){
-		$name=Input::get('name');
-		$school=Input::get('school');
-		$password=Input::get('password');
-		$hpassword=Hash::make($password);
-		$user=new User(array(
-			'name'=>$name,
-			'password'=>$hpassword,
-			'school'=>$school
-			));
-		$user->save();
+		$input=Input::all();
+		$rules=array(
+			'username' => 'required|unique:users',
+			'password' => 'required|confirmed',
+			'email' => 'unique:users|email|required'
+			);
+		$validation=Validator::make($input, $rules);
+		if ($validation->fails())
+		{
+			return Redirect::to('newuser')->with_input()->with_errors($validation);
+		} else {
+			$hpassword=Hash::make(Input::get('password'));
+			$user = new User(array(
+				'username' => Input::get('username'),
+				'password' => $hpassword,
+				'firstname' => Input::get('firstname'),
+				'lastname' => Input::get('lastname'),
+				'email' => Input::get('email'),
+				'institution' => Input::get('institution'),
+				'address' => Input::get('address'),
+				'address2' => Input::get('address2'),
+				'city' => Input::get('city'),
+				'state' => Input::get('state'),
+				'zip' => Input::get('zip'),
+				'country' => Input::get('country')
+				));
+			$user->save();
+		};
 });
 
 Route::get('check', function() {
