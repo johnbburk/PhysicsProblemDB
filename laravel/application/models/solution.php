@@ -21,8 +21,8 @@ class Solution extends Eloquent
 		return $this->has_many_and_belongs_to('Attachment');
 	}
 	
-	public function solcomments()
+	public function solutioncomments()
 	{
-		return $this->has_many('Solcomment');
+		return $this->has_many('Solutioncomment');
 	}
 }

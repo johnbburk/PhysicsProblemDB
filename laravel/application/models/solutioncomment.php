@@ -1,6 +1,6 @@
 <?php
 
-class Solcomment extends Eloquent
+class Solutioncomment extends Eloquent
 {
 
 	// a user can have many problems

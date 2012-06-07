@@ -1,6 +1,6 @@
 <?php
 
-class Probcomment extends Eloquent
+class Comment extends Eloquent
 {
 
 	// a user can have many problems

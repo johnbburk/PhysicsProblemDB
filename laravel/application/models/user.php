@@ -26,13 +26,13 @@ class User extends Eloquent
 		return $this->has_many('Attachment');
 	}
 	
-	public function solcomments()
+	public function solutioncomments()
 	{
-		return $this->has_many('Solcomment');
+		return $this->has_many('Solutioncomment');
 	}
 	
-	public function probcomments()
+	public function comments()
 	{
-		return $this->has_many('Probcomment');
+		return $this->has_many('Comment');
 	}
 }
