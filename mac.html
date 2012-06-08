@@ -46,22 +46,22 @@ This will put a local copy of the code repository on your machine. You'll be ask
 
 4. You are almost finished. All you need to do is set up the local apache webserver so that it can serve the files in the Physics Problem Database repository. To do this, you need to create a symbolic link between these two locations in your file structure. Here's how you do it. <br />
 
-5. Find the full path to the physics problem database repository. You can do this by control-clicking the cloned repository in GitHub and selecting "Show in Finder". Then select any file inside that folder and press command-I to get info. The path appears as the 3rd item under the General tab, titled where. Copy this path using command C, and paste it somewhere when you can easily copy it later. 
+5. Find the full path to the physics problem database repository. You can do this by control-clicking the cloned repository in GitHub and selecting "Show in Finder". Then select any file inside that folder and press command-I to get info. The path appears as the 3rd item under the General tab, titled where. Copy this path using command C, and paste it somewhere when you can easily copy it later. <br />
 
-6. Open a window in terminal and type the command:
+6. Open a window in terminal and type the command:<br />
 
 <code>
-	cd /Applications/MAMP/htdocs
+	cd /Applications/MAMP/htdocs<br />
 </code>
 
-7. You are now in the base directory from where the MAMP Apahce server serves webpages. Now create a symbolic link to the public directory of the physics problem database. The directory will be (directory to repository)/laravel/public
+7. You are now in the base directory from where the MAMP Apahce server serves webpages. Now create a symbolic link to the public directory of the physics problem database. The directory will be (directory to repository)/laravel/public<br />
 
 <code>
 	ln -s (type path to PPD directory without parenthesis)/laravel/public /Applications/MAMP/htdocs
 	
-</code>
+</code><br />
 
-8. That's it. Now when you navigate to <a href="http://localhost:8888/public">http://localhost:8888/public</a> you should see a welcome screen to the Physics Problem database project. 
+8. That's it. Now when you navigate to <a href="http://localhost:8888/public">http://localhost:8888/public</a> you should see a welcome screen to the Physics Problem database project. <br />
 
       </section>
     </div>
