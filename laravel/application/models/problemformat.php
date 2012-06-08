@@ -1,6 +1,6 @@
 <?php
 
-class Problem_format extends Eloquent
+class Problemformat extends Eloquent
 {
 
 	// a user can have many problems

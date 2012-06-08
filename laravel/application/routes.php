@@ -120,6 +120,39 @@ Route::post('newuser', function(){
 		};
 });
 
+// route for adding problems
+
+Route::get('addproblem', function()
+	{
+		// get the formats, types, and levels to populate selectors
+		$formats=Problemformat::get();
+		$formatstopass=array();
+		foreach ($formats AS $format)
+		{
+			$id=$format->id;
+			$form=$format->format;
+			$formatstopass[$id] = $form;
+		};
+		
+		$types=Problemtype::get();
+		$typestopass=array();
+		foreach ($types AS $type)
+		{
+			$typestopass[$type->id]=$type->type;
+		};
+		$levels=Problemlevel::get();
+		$levelstopass=array();
+		foreach ($levels AS $level)
+		{
+			$levelstopass[$level->id]=$level->level;
+		};
+		//$levels=Problemlevel::get(array('level'));
+		return View::make('pages.addproblem')
+			->with('formats', $formatstopass)
+			->with('levels', $levelstopass)
+			->with('types', $typestopass);
+	}
+	);
 
 // quick page to populate type, format etc tables
 
@@ -131,10 +164,32 @@ Route::get('formats', function(){
 			);
 		foreach ($formats AS $format)
 		{
-			//$for=Problem_format::create(array('format'=>$format));
-			$for=new Problem_format;
-			$for->format = $format;
-			$for->save();
+			$for=Problemformat::create(array('format'=>$format));
+		};
+});
+
+Route::get('types', function(){
+		$formats=array(
+			"numerical",
+			"conceptual"
+			);
+		foreach ($formats AS $format)
+		{
+			$for=Problemtype::create(array('type'=>$format));
+		};
+});
+
+Route::get('levels', function(){
+		$formats=array(
+			"physical science",
+			"conceptual physics",
+			"AP physics",
+			"calc-based",
+			"upper division"
+			);
+		foreach ($formats AS $format)
+		{
+			$for=Problemlevel::create(array('level'=>$format));
 		};
 });
 

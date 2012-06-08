@@ -1,6 +1,6 @@
 <?php
 
-class Problem_type extends Eloquent
+class Problemlevel extends Eloquent
 {
 
 	// a user can have many problems
