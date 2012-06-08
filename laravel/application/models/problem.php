@@ -32,6 +32,21 @@ class Problem extends Eloquent
 		return $this->has_many('Probcomment');
 	}
 	
+	public function problem_format()
+	{
+		return $this->belongs_to('Problem_format');
+	}
+	
+	public function problem_type()
+	{
+		return $this->belongs_to('Problem_type');
+	}
+	
+	public function problem_level()
+	{
+		return $this->belongs_to('Problem_level');
+	}
+	
 	
 		
 }
