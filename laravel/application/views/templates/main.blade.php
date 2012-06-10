@@ -11,9 +11,9 @@
 <body>
 	<div class="header">
 		@if ( Auth::guest() )
-			{{ HTML::link('admin', 'Login') }}
+			{{ HTML::link('admin/account/login', 'Login') }}
 		@else
-			{{ HTML::link('logout', 'Logout') }}
+			{{ HTML::link('admin/account/logout', 'Logout') }}
 		@endif
 		<hr />
 		<h1>Problem Database</h1>

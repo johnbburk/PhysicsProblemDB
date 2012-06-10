@@ -1,7 +1,7 @@
 @layout('templates.main')
 
 @section('content')
-	{{ Form::open('newuser') }}
+	{{ Form::open('admin/account/newuser') }}
 
 		<!-- check for login errors flash var -->
 		@if (Session::has('errors'))
