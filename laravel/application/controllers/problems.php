@@ -82,7 +82,18 @@ class Problems_Controller extends Base_Controller
 				$prob->tags()->attach($oldtag);
 			};
 		};
+		return Redirect::to('problems/new')->with_input()->with('submitworked', true);
 	}
+	
+	public function get_mine()
+	{
+		$myprobs=Auth::user()->problems;
+		return View::make('pages.myproblems')
+			->with('probs', $myprobs);
+	}
+	
+	
+	// Here I want to make view problem set where tags can be added
 }
 	
 	
