@@ -60,6 +60,8 @@ Route::Controller('admin.account');
 
 // route for adding problems
 
+Route::Controller('problems');
+
 Route::get('addproblem', function()
 	{
 		// get the formats, types, and levels to populate selectors
@@ -246,5 +248,5 @@ Route::filter('csrf', function()
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to('login');
+	if (Auth::guest()) return Redirect::to('admin/account/login');
 });

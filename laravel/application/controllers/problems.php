@@ -1,0 +1,88 @@
+<?php
+
+class Problems_Controller extends Base_Controller
+{
+	public $restful=true;
+	
+	public function __construct()
+	{
+		$this->filter('before', 'auth');
+	}
+	
+	public function get_index()
+	{
+		echo "this is the index page of problems";
+	}
+	
+	public function prepareselector($models, $name)
+	{
+		$items=array();
+		foreach ($models AS $model)
+		{
+			$items[$model->id] = $model->$name;
+		};
+		return $items;
+	}
+	
+	public function get_new()
+	{
+		// get the formats, types, and levels to populate selectors
+		
+		
+		$formatstopass2=$this->prepareselector(Problemformat::get(),'format');
+		$typestopass2=$this->prepareselector(Problemtype::get(),'type');
+		$levelstopass2=$this->prepareselector(Problemlevel::get(),'level');
+		
+		$currenttags = Tag::get();
+		
+		
+		//$levels=Problemlevel::get(array('level'));
+		return View::make('pages.addproblem')
+			->with('formats', $formatstopass2)
+			->with('levels', $levelstopass2)
+			->with('types', $typestopass2)
+			->with('currenttags', $currenttags);
+	}
+	
+	public function post_new()
+	{
+		$title = Input::get('title');
+		$content = Input::get('content');
+		$level = Input::get('level');
+		$type = Input::get('type');
+		$format = Input::get('format');
+		$newtags = Input::get('newtags');
+		$userid=Auth::user()->id;
+		$prob = new Problem(array(
+			'title' => $title,
+			'question' => $content,
+			'problem_type_id' => $type,
+			'problem_format_id' => $format,
+			'problem_level_id' => $level));
+		$user=User::find($userid);
+		$prob=$user->problems()->insert($prob);
+		
+/* 		$prob->problemformat()->insert(array('format'=>$format));
+		$prob->problemtype()->insert(array('type'=>$type));
+		$prob->problemlevel()->insert(array('level'=>$level)); */
+		$newtagarray=explode(',',$newtags);
+		foreach($newtagarray AS $newtag)
+		{
+			if ($newtag != '')
+			{
+				$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid));
+			};
+		};
+		
+		$oldtags = Input::get('tags', 'none');
+		if ($oldtags != 'none')
+		{
+			foreach($oldtags AS $oldtag)
+			{
+				$prob->tags()->attach($oldtag);
+			};
+		};
+	}
+}
+	
+	
