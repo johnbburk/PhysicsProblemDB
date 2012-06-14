@@ -56,9 +56,9 @@ class Problems_Controller extends Base_Controller
 		$prob = new Problem(array(
 			'title' => $title,
 			'question' => $content,
-			'problem_type_id' => $type,
-			'problem_format_id' => $format,
-			'problem_level_id' => $level));
+			'problemtype_id' => $type,
+			'problemformat_id' => $format,
+			'problemlevel_id' => $level));
 		$user=User::find($userid);
 		$prob=$user->problems()->insert($prob);
 		

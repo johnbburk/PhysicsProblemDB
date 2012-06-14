@@ -2,14 +2,14 @@
 
 
 
-class Admin_setupdb_Controller extends Base_Controller
+class Admin_Setupdb_Controller extends Base_Controller
 {
 	public function action_index()
 	{
 	//The following drop commands need to be run if
 // the tables already exist.
 // If your db is empty, just leave them commented out
-	
+
 Schema::drop('attachments');
 Schema::drop('attachment_problem');
 Schema::drop('attachment_solution');
@@ -23,6 +23,7 @@ Schema::drop('solutioncomments');
 Schema::drop('solutions');
 Schema::drop('tags');
 Schema::drop('users');
+
 
 Schema::table('attachments', function($table)
 
