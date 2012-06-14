@@ -56,43 +56,14 @@ ______________________________________________*/
 
 Route::Controller('admin.account');
 
+Route::Controller('admin.setupdb');
+
 
 
 // route for adding problems
 
 Route::Controller('problems');
 
-Route::get('addproblem', function()
-	{
-		// get the formats, types, and levels to populate selectors
-		$formats=Problemformat::get();
-		$formatstopass=array();
-		foreach ($formats AS $format)
-		{
-			$id=$format->id;
-			$form=$format->format;
-			$formatstopass[$id] = $form;
-		};
-		
-		$types=Problemtype::get();
-		$typestopass=array();
-		foreach ($types AS $type)
-		{
-			$typestopass[$type->id]=$type->type;
-		};
-		$levels=Problemlevel::get();
-		$levelstopass=array();
-		foreach ($levels AS $level)
-		{
-			$levelstopass[$level->id]=$level->level;
-		};
-		//$levels=Problemlevel::get(array('level'));
-		return View::make('pages.addproblem')
-			->with('formats', $formatstopass)
-			->with('levels', $levelstopass)
-			->with('types', $typestopass);
-	}
-	);
 
 // quick page to populate type, format etc tables
 
