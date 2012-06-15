@@ -4,11 +4,21 @@
 
 class Admin_Setupdb_Controller extends Base_Controller
 {
+	public function action_dropdb()
+	{
+		DB::query("DROP DATABASE IF EXISTS `mydb`");
+		DB::query("CREATE DATABASE `mydb`");
+	}
+	
 	public function action_index()
 	{
 	//The following drop commands need to be run if
 // the tables already exist.
 // If your db is empty, just leave them commented out
+
+// I think this'll do the trick:
+
+
 /*
 Schema::drop('attachments');
 Schema::drop('attachment_problem');

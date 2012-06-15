@@ -64,7 +64,6 @@ Route::Controller('admin.setupdb');
 
 Route::Controller('problems');
 
-
 // quick page to populate type, format etc tables
 
 Route::get('formats', function(){
