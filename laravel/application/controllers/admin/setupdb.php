@@ -8,6 +8,7 @@ class Admin_Setupdb_Controller extends Base_Controller
 	{
 		DB::query("DROP DATABASE IF EXISTS `mydb`");
 		DB::query("CREATE DATABASE `mydb`");
+		return Redirect::to('admin/setupdb');
 	}
 	
 	public function action_index()
@@ -264,6 +265,38 @@ $table->string('country', 45);
 $table->integer('is_active');
 
 $table->timestamps();
+
+//here I try to populate the formats table
+$formats=array(
+			"multiple choice",
+			"true/false",
+			"free response"
+			);
+foreach ($formats AS $format)
+		{
+			$for=Problemformat::create(array('format'=>$format));
+		};
+		
+$formats=array(
+			"numerical",
+			"conceptual"
+			);
+	foreach ($formats AS $format)
+	{
+		$for=Problemtype::create(array('type'=>$format));
+	};
+	
+$formats=array(
+			"physical science",
+			"conceptual physics",
+			"AP physics",
+			"calc-based",
+			"upper division"
+			);
+		foreach ($formats AS $format)
+		{
+			$for=Problemlevel::create(array('level'=>$format));
+		};
 
 });	
 	}

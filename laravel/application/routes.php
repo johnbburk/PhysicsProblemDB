@@ -66,7 +66,9 @@ Route::Controller('problems');
 
 // quick page to populate type, format etc tables
 
-Route::get('formats', function(){
+// I've commented these out because it's all done with admin/setupdb/dropdb
+
+/* Route::get('formats', function(){
 		$formats=array(
 			"multiple choice",
 			"true/false",
@@ -101,7 +103,7 @@ Route::get('levels', function(){
 		{
 			$for=Problemlevel::create(array('level'=>$format));
 		};
-});
+}); */
 
 // some quick tester routes_________________________________________
 
