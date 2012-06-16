@@ -15,6 +15,7 @@
 		@else
 			{{ HTML::link('admin/account/logout', 'Logout') }}
 		@endif
+		{{HTML::link('/', 'home')}}
 		<hr />
 		<h1>Problem Database</h1>
 		<h2>Tailored problems for your students</h2>

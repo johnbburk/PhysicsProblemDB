@@ -74,7 +74,7 @@ class Admin_Account_Controller extends Base_Controller
 		if ( Auth::attempt($credentials) )
 		{
 			// it worked, redirect to the admin route
-			return Redirect::to('admin');
+			return Redirect::back();
 		}
 		else
 		{
