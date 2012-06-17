@@ -40,7 +40,8 @@ return array(
 	|
 	*/
 
-	'index' => 'index.php',
+//	'index' => 'index.php',
+	'index' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +55,7 @@ return array(
 	|
 	*/
 	
-	'key' => '',
+	'key' => 'qazwsxedcrfvtgbnhyujmkiolpoiuytr',
 	/*
 	|--------------------------------------------------------------------------
 	| Profiler Toolbar
