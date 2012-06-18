@@ -54,7 +54,75 @@ it, go to our repository and hit "clone in windows" and you'll be off
 and running. Once you do, it'll look something like this:
 </p>
 <img src='githubwindows.png' />
+<p>
+What that'll do is put a local copy of our repository (ie, every file we've made)
+onto your machine whereever you've told github for windows to put it. 
+I've found that telling github for windows to use the htdocs folder in the XAMPP
+file structure (see below) makes things easiest.
+</p>
+</div>
+<h2>Getting PHP and MySQL to work</h2>
+<div>
+<p>
+Windows machines don't normally work as web servers. Php (our language of choice)
+only works on machines that act as web servers! So we've got to do something
+about that. In comes <a href="http://www.apachefriends.org/en/xampp.html">XAMPP</a>.
+</p>
+<p>
+XAMPP installs an apache web server on your machine, installs the most up-to-date
+version of PHP on your machine, installs a working MySQL database on your machine,
+and gives you all kinds of helpful tools like phpmyadmin which lets you deal
+with your database.
+</p>
+<p>
+When you install it, say yes to the appropriate things. At the end, run the
+XAMPP control panel that looks like this:
+</p>
+<img src='xamppcontrolpanel.png' />
+<p>
+You have to start both apache and the mysql tools for our stuff to work.
+</p>
+<p>
+Now you browse to urls like localhost/phpmyadmin to play with the tools they have.
+All the functioning tools are in the htdocs folder which is what localhost/ maps
+to. That's why putting your github repositories there will then have you look
+at urls like this: localhost/GitHub/PhysicsProblemDB/laravel/public/ which will
+show your our splash page with links to cool tools.
+</p>
+</div>
 
+<h2>Playing around</h2>
+<div>
+<p>
+Ok, now let's say you want to make your own page. The easiest way to do this
+is make a file called "test.php" or something similar and put it under the 
+laravel/application/controllers/ folder in our repository. In it, type something
+like this:
+</p>
+<code>
+<?php
+class Test_Controller Extends Base_Controller
+{
+	public function action_index()
+	{
+		echo "Hello world";
+	}
+}
+</code>
+<p>
+Then, in the laravel/application/routes.php file, add this line:
+</p>
+<code>
+Route::controller('test');
+</code>
+<p>
+then navigate to localhost/GitHub/PhysicsProblemDB/laravel/public/test/ to see
+your new creation.
+</p>
+<p>
+We'll have lots of other tutorials to let you get further, and reading 
+<a href="http://daylerees.com/category/laravel-tutorials/">these great Laravel 
+tutorials</a> should help a lot. Have fun!
 </p>
 </div>
 
