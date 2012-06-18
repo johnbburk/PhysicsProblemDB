@@ -1,0 +1,66 @@
+
+<?php \Laravel\Section::start('content'); ?>
+	<?php echo  Form::open('admin/account/newuser') ; ?>
+
+		<!-- check for login errors flash var -->
+		<?php if (Session::has('errors')): ?>
+			<div><span class="error">some kind of error happened</span></div>
+		<?php endif; ?>
+
+		<!-- username field -->
+		<?php if ($errors->has('username')): ?>
+		<span class="error"><?php echo $errors->first('username'); ?></span>
+			<?php endif; ?>
+		<p><?php echo  Form::label('username', 'username') ; ?></p>
+		<p><?php echo  Form::text('username', Input::old('username')) ; ?></p>
+		
+		<p><?php echo  Form::label('firstname', 'First name') ; ?></p>
+		<p><?php echo  Form::text('firstname') ; ?></p>
+		
+		<p><?php echo  Form::label('lastname', 'Last name') ; ?></p>
+		<p><?php echo  Form::text('lastname') ; ?></p>
+		
+		<?php if ($errors->has('email')): ?>
+		<span class="error"><?php echo $errors->first('email'); ?></span>
+			<?php endif; ?>
+		<p><?php echo  Form::label('email', 'email') ; ?></p>
+		<p><?php echo  Form::text('email') ; ?></p>
+		
+		<p><?php echo  Form::label('institution', 'institution') ; ?></p>
+		<p><?php echo  Form::text('institution') ; ?></p>
+		
+		<p><?php echo  Form::label('address', 'Address') ; ?></p>
+		<p><?php echo  Form::text('address') ; ?></p>
+		
+		<p><?php echo  Form::label('address2', 'Address2') ; ?></p>
+		<p><?php echo  Form::text('address2') ; ?></p>
+		
+		<p><?php echo  Form::label('city', 'city') ; ?></p>
+		<p><?php echo  Form::text('city') ; ?></p>
+		
+		<p><?php echo  Form::label('state', 'State') ; ?></p>
+		<p><?php echo  Form::text('state') ; ?></p>
+		
+		<p><?php echo  Form::label('zip', 'Zip code') ; ?></p>
+		<p><?php echo  Form::text('zip') ; ?></p>
+		
+		<p><?php echo  Form::label('country', 'country') ; ?></p>
+		<p><?php echo  Form::text('country') ; ?></p>
+
+		<!-- password field -->
+		<?php if ($errors->has('password')): ?>
+		<span class="error"><?php echo $errors->first('password'); ?></span>
+			<?php endif; ?>
+		<p><?php echo  Form::label('password', 'Password') ; ?></p>
+		<p><?php echo  Form::text('password') ; ?></p>
+		
+		<p><?php echo  Form::label('password_confirmation', 'Password again') ; ?></p>
+		<p><?php echo  Form::text('password_confirmation') ; ?></p>
+	
+		<!-- submit button -->
+		<p><?php echo  Form::submit('Login') ; ?></p>
+
+	<?php echo  Form::close() ; ?>
+<?php \Laravel\Section::stop(); ?>
+
+<?php echo view('templates.main')->with(get_defined_vars())->render(); ?>

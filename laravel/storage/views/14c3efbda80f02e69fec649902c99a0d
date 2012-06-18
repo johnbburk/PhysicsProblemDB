@@ -1,0 +1,30 @@
+
+<?php \Laravel\Section::start('content'); ?>
+<?php if (Session::get('submitworked')==true): ?>
+<div><span class='error'>Thanks for the submission. I've repopulated the form
+with your submission, but don't worry, I've already saved this one.</span></div>
+<?php endif; ?>
+<?php echo Form::open('problems/new'); ?>
+<p>Title <?php echo Form::text('title',Input::old('title')); ?></p>
+<p>Main text</p>
+<p><?php echo Form::textarea('content',Input::old('content')); ?></p>
+<p>Please choose the appropriate format, type, and level for this problem</p>
+
+<p>
+
+<?php echo Form::select('format',$formats, Input::old('format')); ?>
+<?php echo Form::select('type',$types, Input::old('type')); ?>
+<?php echo Form::select('level',$levels, Input::old('level')); ?>
+</p>
+
+<p>
+add tags (comma separated): <?php echo Form::text('newtags'); ?>
+</p>
+<?php foreach ($currenttags AS $ctag): ?>
+<?php echo $ctag->tag; ?>: <?php echo Form::checkbox("tags[]",$ctag->id); ?>
+<?php endforeach; ?>
+<?php echo Form::submit('submit'); ?>
+<?php echo Form::close(); ?>
+<?php \Laravel\Section::stop(); ?>
+
+<?php echo view('templates.main')->with(get_defined_vars())->render(); ?>

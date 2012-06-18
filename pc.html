@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Physicsproblemdb : Physics Problem DB" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>PhysicsproblemDB</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/occam98/PhysicsProblemDB">View on GitHub</a>
+
+          <h1 id="project_title">PhysicsProblemDB</h1>
+          <h2 id="project_tagline">Physics Problem DB</h2>
+
+     
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Getting started with development on the Mac</h1>
+
+<p>
+The easiest way to start developing on the mac is to install XAMPP, which is an all-in-one installer of Apache (webserver), MySQL(database software) and PHP (scripting software for making dynamic websites.) You can download the free version of MAMP installer here. Note: MAMP will try to talk you into upgrading to the pro version often—you don't need to do this. 
+	</p>	
+1. <a href="http://www.mamp.info/downloads/releases/MAMP_PRO.zip">Install MAMP website tools</a> (Click to download)
+<p>
+GitHub is a distributed version control manager. It allows many users to work on the same coding project, and keeps track of changes that they make to the code. You'll need this to download the source code to your machine. There is a wonderful mac gui-interface that makes working with github a breeze. 
+</p>
+2. 	Download GitHub for Mac from <a href="http://mac.github.com/">mac.github.com</a>.<br /><br />
+3.  Navigate to this url: <a href="<a href="https://github.com/occam98/PhysicsProblemDB">https://github.com/occam98/PhysicsProblemDB</a>, and click on "Clone in Mac"<br />
+
+<img src="clonemac.png" alt="" width="" height="" border="0" />
+
+This will put a local copy of the code repository on your machine. You'll be asked to confirm a location by the git program.<br /><br />
+
+4. You are almost finished. All you need to do is set up the local apache webserver so that it can serve the files in the Physics Problem Database repository. To do this, you need to create a symbolic link between these two locations in your file structure. Here's how you do it. <br /><br />
+
+5. Find the full path to the physics problem database repository. You can do this by control-clicking the cloned repository in GitHub and selecting "Show in Finder". Then select any file inside that folder and press command-I to get info. The path appears as the 3rd item under the General tab, titled where. Copy this path using command C, and paste it somewhere when you can easily copy it later. <br /><br />
+
+6. Open a window in terminal and type the command:<br /><br />
+
+<code>
+	cd /Applications/MAMP/htdocs<br />
+</code>
+
+7. You are now in the base directory from where the MAMP Apahce server serves webpages. Now create a symbolic link to the public directory of the physics problem database. The directory will be (directory to repository)/laravel/public<br />
+
+<code>
+	ln -s (type path to PPD directory without parenthesis)/laravel/public /Applications/MAMP/htdocs
+	
+</code><br />
+
+8. That's it. Now when you navigate to <a href="http://localhost:8888/public">http://localhost:8888/public</a> you should see a welcome screen to the Physics Problem database project. <br />
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Physicsproblemdb maintained by <a href="https://github.com/occam98">occam98</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

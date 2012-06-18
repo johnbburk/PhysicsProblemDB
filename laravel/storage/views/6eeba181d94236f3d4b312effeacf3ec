@@ -1,0 +1,29 @@
+<!-- this is our blade template file
+	other views will use this as a "wrapper" -->
+
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="UTF-8">
+	<title><?php echo \Laravel\Section::yield('title'); ?></title>
+	<?php echo  HTML::style('css/style.css') ; ?>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+	<div class="header">
+		<?php if ( Auth::guest() ): ?>
+			<?php echo  HTML::link('admin/account/login', 'Login') ; ?>
+		<?php else: ?>
+			<?php echo  HTML::link('admin/account/logout', 'Logout') ; ?>
+		<?php endif; ?>
+		<?php echo HTML::link('/', 'home'); ?>
+		<hr />
+		<h1>Problem Database</h1>
+		<h2>Tailored problems for your students</h2>
+	</div>
+
+	<div class="content">
+		<?php echo \Laravel\Section::yield('content'); ?>
+	</div>
+</body>
+</html>

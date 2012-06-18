@@ -1,0 +1,21 @@
+
+<?php \Laravel\Section::start('content'); ?>
+
+<?php foreach ($probs AS $prob): ?>
+<div>
+<h1>
+<?php echo $prob->title; ?>
+</h1>
+<div>
+<?php echo $prob->question; ?>
+</div>
+Tags:
+<?php foreach ($prob->tags AS $tag): ?>
+<?php echo $tag->tag; ?>, 
+<?php endforeach; ?>
+<hr/>
+<?php endforeach; ?>
+
+<?php \Laravel\Section::stop(); ?>
+
+<?php echo view('templates.main')->with(get_defined_vars())->render(); ?>
