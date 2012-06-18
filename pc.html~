@@ -99,7 +99,7 @@ is make a file called "test.php" or something similar and put it under the
 laravel/application/controllers/ folder in our repository. In it, type something
 like this:
 </p>
-<pre>
+<code>
 &lt;?php
 class Test_Controller Extends Base_Controller
 {
@@ -108,7 +108,7 @@ class Test_Controller Extends Base_Controller
 		echo "Hello world";
 	}
 }
-</pre>
+</code>
 <p>
 Then, in the laravel/application/routes.php file, add this line:
 </p>
