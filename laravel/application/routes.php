@@ -54,100 +54,28 @@ ______________________________________________*/
 // New user routes______________________________________________
 // this defines admin/account/newuser and takes care of the form
 
-Route::Controller('admin.account');
+/*_________________________________________________________
+// 
+// Right now we're using the autodetect tool to register all controllers
+//
+____________________________________________________________*/
 
-Route::Controller('admin.setupdb');
+//Route::Controller('admin.account');
+
+//Route::Controller('admin.setupdb');
 
 
 
 // route for adding problems
 
-Route::Controller('problems');
+//Route::Controller('problems');
+
+// I want to just register all controllers for now
+Route::controller(Controller::detect());
 
 // quick page to populate type, format etc tables
 
-// I've commented these out because it's all done with admin/setupdb/dropdb
 
-/* Route::get('formats', function(){
-		$formats=array(
-			"multiple choice",
-			"true/false",
-			"free response"
-			);
-		foreach ($formats AS $format)
-		{
-			$for=Problemformat::create(array('format'=>$format));
-		};
-});
-
-Route::get('types', function(){
-		$formats=array(
-			"numerical",
-			"conceptual"
-			);
-		foreach ($formats AS $format)
-		{
-			$for=Problemtype::create(array('type'=>$format));
-		};
-});
-
-Route::get('levels', function(){
-		$formats=array(
-			"physical science",
-			"conceptual physics",
-			"AP physics",
-			"calc-based",
-			"upper division"
-			);
-		foreach ($formats AS $format)
-		{
-			$for=Problemlevel::create(array('level'=>$format));
-		};
-}); */
-
-// some quick tester routes_________________________________________
-
-/* this one only works with my simple schema
-Route::get('insertproblem', function() {
-		$rand=rand();
-		$prob = array(
-			'text'  => "My super cool problem number $rand",
-			);
-		$user = User::find(1);
-		$user->problems()->insert($prob);
-});
-*/
-
-/* this one only works with my simple schema
-Route::get('inserttag', array('before' => 'auth', function() {
-			$rand=rand();
-			$tag = array(
-				'tag'  => "tag$rand",
-				'user_id' => Auth::user()->id
-				);
-			$prob = Problem::find(1);
-			$prob->tags()->insert($tag);
-		
-}));
-*/
-
-/* only works with my simple schema
-Route::get('listproblems', array('before' => 'auth', function() {
-		$uid=Auth::user()->id;
-		$user=User::find($uid);
-		$probs=$user->problems;
-		foreach ($probs AS $problem) {
-			echo $problem->text;
-			echo " has tags: ";
-			$tags=$problem->tags;
-			foreach ($tags AS $tag) {
-				echo $tag->tag;
-				echo ", ";
-			};
-			echo "<br/>";
-		};
-}));
-*/
 
 
 /*

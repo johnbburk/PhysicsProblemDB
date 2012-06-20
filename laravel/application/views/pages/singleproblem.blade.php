@@ -2,10 +2,9 @@
 
 @section('content')
 
-@foreach ($probs AS $prob)
 <div>
 <h1>
-{{HTML::link('problems/view/'.$prob->id, $prob->title)}}
+{{$prob->title}}
 </h1>
 <div>
 {{$prob->question}}
@@ -13,8 +12,6 @@
 Tags:
 @foreach ($prob->tags AS $tag)
 {{$tag->tag}}, 
-@endforeach
-<hr/>
 @endforeach
 
 @endsection

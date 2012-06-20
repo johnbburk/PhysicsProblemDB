@@ -94,6 +94,13 @@ class Problems_Controller extends Base_Controller
 	
 	
 	// Here I want to make view problem set where tags can be added
+	
+	public function get_view($probid)
+	{
+		$prob=Problem::find($probid);
+		return View::make('pages.singleproblem')
+			->with('prob', $prob);
+	}
 }
 	
 	
