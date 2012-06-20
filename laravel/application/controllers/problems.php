@@ -52,6 +52,15 @@ class Problems_Controller extends Base_Controller
 		$type = Input::get('type');
 		$format = Input::get('format');
 		$newtags = Input::get('newtags');
+		$attachment1=Input::upload('attachment1','/attachments'.'1');
+		$attachment2=Input::get('attachment2');
+		$attachment3=Input::get('attachment3');
+		$caption1=Input::get('caption1');
+		$caption2=Input::get('caption2');
+		$caption3=Input::get('caption3');
+		
+		
+		
 		$userid=Auth::user()->id;
 		$prob = new Problem(array(
 			'title' => $title,
@@ -82,6 +91,15 @@ class Problems_Controller extends Base_Controller
 				$prob->tags()->attach($oldtag);
 			};
 		};
+		
+		//handle attachments
+		echo "attachment1:";
+		echo $attachment1;
+		$file1=new Attachment(array('user_id'=>$userid,'link'=>'attachment1'));
+		$file1->save();
+		//need to add link to problem_attachments with caption
+		
+		
 		return Redirect::to('problems/new')->with_input()->with('submitworked', true);
 	}
 	

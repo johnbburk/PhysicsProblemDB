@@ -26,7 +26,7 @@ class Admin_Account_Controller extends Base_Controller
 		$validation=Validator::make($input, $rules);
 		if ($validation->fails())
 		{
-			return Redirect::to('newuser')->with_input()->with_errors($validation);
+			return Redirect::to('admin/account/newuser')->with_input()->with_errors($validation);
 		} else {
 			$hpassword=Hash::make(Input::get('password'));
 			$user = new User(array(
