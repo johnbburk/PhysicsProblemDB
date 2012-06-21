@@ -52,10 +52,10 @@ class Problems_Controller extends Base_Controller
 		$type = Input::get('type');
 		$format = Input::get('format');
 		$newtags = Input::get('newtags');
-		$attachment1=Input::upload('attachment1','/attachments'.'1');
-		$attachment2=Input::get('attachment2');
-		$attachment3=Input::get('attachment3');
-		$caption1=Input::get('caption1');
+		
+		//$attachment2=Input::upload('attachment2',path('storgage').'attachments');
+		//$attachment3=Input::upload('attachment3',path('storgage').'attachments');
+		
 		$caption2=Input::get('caption2');
 		$caption3=Input::get('caption3');
 		
@@ -93,10 +93,17 @@ class Problems_Controller extends Base_Controller
 		};
 		
 		//handle attachments
-		echo "attachment1:";
-		echo $attachment1;
-		$file1=new Attachment(array('user_id'=>$userid,'link'=>'attachment1'));
-		$file1->save();
+	
+		if(Input::get('attachmet1')!='' and Input::has_file('attachment1'))//this protects against errors from trying to upload empty files
+		{
+			$attachment1=Input::upload('attachment1',path('storage').'attachments');
+			$caption1=Input::get('caption1');
+			$file1=new Attachment(array('user_id'=>$userid,'link'=>'attachment1'));
+			$prob->attachments()->insert($file1,array('description'=>$caption1)); 
+		}
+		
+		
+		
 		//need to add link to problem_attachments with caption
 		
 		
