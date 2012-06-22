@@ -14,7 +14,7 @@ class Problem extends Eloquent
 	
 	public function tags()
 	{
-		return $this->has_many_and_belongs_to('Tag');
+		return $this->has_many_and_belongs_to('Tag')->with(array('user_id'));
 	}
 	
 	public function solutions()

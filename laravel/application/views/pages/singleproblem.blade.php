@@ -13,11 +13,20 @@
 {{$prob->question}}
 </div>
 <p>
-Tags:
-@foreach ($prob->tags AS $tag)
+Your tags (these are the tags you have previously tagged for this problem, if
+	you want to untag this problem for that tag, check the box):
+@foreach ($mytags AS $tag)
+{{Form::checkbox('untags[]', $tag->id)}}{{$tag->tag}}, 
+@endforeach
+</p>
+<p>
+Others' tags (these are tags that others have associated with this problem - 
+	note that you can't untag them for this problem):
+@foreach ($othertags AS $tag)
 {{$tag->tag}}, 
 @endforeach
 </p>
+
 <p>
 Unused tags: 
 @foreach ($unusedtags AS $unusedtag) 

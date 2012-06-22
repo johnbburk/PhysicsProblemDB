@@ -100,8 +100,27 @@ class Problems_Controller extends Base_Controller
 		$prob=Problem::find($probid);
 		$usedtags=$prob->tags()->lists('id');
 		$remainingtags=Tag::where_not_in('id',$usedtags)->get();
+		$usedtagmodels=$prob->tags;
+		$mine=array();
+		$others=array();
+		$taggerarray=array();
+		$datearray=array();
+		foreach ($usedtagmodels AS $tag)
+		{
+			$tagger=$tag->pivot->user_id;
+			$taggerarray[]=$tagger;
+			$datearray[]=$tag->pivot->created_at;
+			if ($tagger == Auth::user()->id)
+			{
+				$mine[]=$tag;
+			} else {
+				$others[]=$tag;
+			};
+		};
 		return View::make('pages.singleproblem')
 			->with('prob', $prob)
+			->with('mytags', $mine)
+			->with('othertags', $others)
 			->with('unusedtags', $remainingtags);
 	}
 	
@@ -118,6 +137,16 @@ class Problems_Controller extends Base_Controller
 				$prob->tags()->attach($newtag, array('user_id'=>$userid));
 			};
 		};
+		
+		$undotags = Input::get('untags', 'none');
+		if ($undotags != 'none')
+		{
+			foreach($undotags AS $newtag)
+			{
+				$prob->tags()->detach($newtag);
+			};
+		};
+		
 		$newtaglist=Input::get('newtaglist');
 		$newtagarray=explode(',',$newtaglist);
 		foreach($newtagarray AS $newtag)
