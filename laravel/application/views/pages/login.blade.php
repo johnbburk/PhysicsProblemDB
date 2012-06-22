@@ -14,7 +14,7 @@
 
 		<!-- password field -->
 		<p>{{ Form::label('password', 'Password') }}</p>
-		<p>{{ Form::text('password') }}</p>
+		<p>{{ Form::password('password') }}</p>
 
 		<!-- submit button -->
 		<p>{{ Form::submit('Login') }}</p>
