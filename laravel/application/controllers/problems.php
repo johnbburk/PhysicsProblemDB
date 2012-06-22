@@ -70,7 +70,7 @@ class Problems_Controller extends Base_Controller
 		{
 			if ($newtag != '')
 			{
-				$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid));
+				$tagmodel=$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid), array('user_id'=>$userid));
 			};
 		};
 		
@@ -79,7 +79,7 @@ class Problems_Controller extends Base_Controller
 		{
 			foreach($oldtags AS $oldtag)
 			{
-				$prob->tags()->attach($oldtag);
+				$prob->tags()->attach($oldtag, array('user_id'=>$userid));
 			};
 		};
 		return Redirect::to('problems/new')->with_input()->with('submitworked', true);
@@ -98,8 +98,36 @@ class Problems_Controller extends Base_Controller
 	public function get_view($probid)
 	{
 		$prob=Problem::find($probid);
+		$usedtags=$prob->tags()->lists('id');
+		$remainingtags=Tag::where_not_in('id',$usedtags)->get();
 		return View::make('pages.singleproblem')
-			->with('prob', $prob);
+			->with('prob', $prob)
+			->with('unusedtags', $remainingtags);
+	}
+	
+	public function post_view()
+	{
+		$userid=Auth::user()->id;
+		$probid=Input::get('probid');
+		$prob=Problem::Find($probid);
+		$newtags = Input::get('newtags', 'none');
+		if ($newtags != 'none')
+		{
+			foreach($newtags AS $newtag)
+			{
+				$prob->tags()->attach($newtag, array('user_id'=>$userid));
+			};
+		};
+		$newtaglist=Input::get('newtaglist');
+		$newtagarray=explode(',',$newtaglist);
+		foreach($newtagarray AS $newtag)
+		{
+			if ($newtag != '')
+			{
+				$tagmodel=$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid), array('user_id'=>$userid));
+			};
+		};
+		return Redirect::to('problems/view/'.$probid);
 	}
 }
 	
