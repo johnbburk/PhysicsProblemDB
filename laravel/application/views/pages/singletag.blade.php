@@ -2,19 +2,19 @@
 
 @section('content')
 
-@foreach ($probs AS $prob)
-<div>
-<h1>
-{{$prob->link}}
-</h1>
+<h1>{{$tag->tag}}</h1>
+
+@foreach ($tag->problems AS $prob)
+
+<h2>{{$prob->link}}</h2>
 <div>
 {{$prob->question}}
-</div>
-Tags:
+<p>
 @foreach ($prob->tags AS $tag)
 {{$tag->link}}, 
 @endforeach
-<hr/>
+</div>
+<hr />
 @endforeach
 
 @endsection

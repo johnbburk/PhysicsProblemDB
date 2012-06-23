@@ -15,4 +15,11 @@ class Tag extends Eloquent
 	{
 		return $this->belongs_to('User');
 	}
+	
+	public function get_link()
+	{
+		$id=$this->get_attribute('id');
+		$tag=$this->get_attribute('tag');
+		return HTML::link('tags/singletag/'.$id, $tag);
+	}
 }

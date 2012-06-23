@@ -47,6 +47,11 @@ class Problem extends Eloquent
 		return $this->belongs_to('Problemlevel');
 	}
 	
-	
+	public function get_link()
+	{
+		$id=$this->get_attribute('id');
+		$title=$this->get_attribute('title');
+		return HTML::link('problems/view/'.$id, $title);
+	}
 		
 }
