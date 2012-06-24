@@ -67,7 +67,7 @@ $table->integer('attachment_id');
 
 $table->integer('user_id');
 
-$table->text('description');
+$table->text('description')->nullable();
 
 $table->timestamps();
 

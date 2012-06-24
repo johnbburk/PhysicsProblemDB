@@ -44,6 +44,19 @@ class Problems_Controller extends Base_Controller
 			->with('currenttags', $currenttags);
 	}
 	
+	public function upload_attachment($fname, $text, $prob, $userid)
+	{
+		if (array_get(Input::file($fname), 'tmp_name'))
+		{
+			$type=File::extension(array_get(Input::File($fname),'name'));
+			$name=substr(md5(time()),0,16);
+			$attachment1=Input::upload($fname,path('storage').'attachments/',$name.'.'.$type);
+			$caption1=Input::get('$text');
+			$file1=new Attachment(array('user_id'=>$userid,'link'=>path('storage').'attachments/'.$name.'.'.$type));
+			$prob->attachments()->insert($file1,array('description'=>$text)); 
+		}
+	}
+	
 	public function post_new()
 	{
 		$title = Input::get('title');
@@ -51,16 +64,7 @@ class Problems_Controller extends Base_Controller
 		$level = Input::get('level');
 		$type = Input::get('type');
 		$format = Input::get('format');
-		$newtags = Input::get('newtags');
-		
-		//$attachment2=Input::upload('attachment2',path('storgage').'attachments');
-		//$attachment3=Input::upload('attachment3',path('storgage').'attachments');
-		
-		$caption2=Input::get('caption2');
-		$caption3=Input::get('caption3');
-		
-		
-		
+		$newtags = Input::get('newtags');		
 		$userid=Auth::user()->id;
 		$prob = new Problem(array(
 			'title' => $title,
@@ -93,15 +97,22 @@ class Problems_Controller extends Base_Controller
 		};
 		
 		//handle attachments
-	
-		if(Input::get('attachmet1')!='' and Input::has_file('attachment1'))//this protects against errors from trying to upload empty files
+		
+		$this->upload_attachment('attachment1', Input::get('caption1'), $prob, $userid);
+		$this->upload_attachment('attachment2', Input::get('caption2'), $prob, $userid);
+		$this->upload_attachment('attachment3', Input::get('caption3'), $prob, $userid);
+		
+		/*
+		if (array_get(Input::file('attachment1'), 'tmp_name'))
 		{
-			$attachment1=Input::upload('attachment1',path('storage').'attachments');
+			$type=File::extension(Input::File('attachment1.name'));
+			$name=substr(md5(time()),0,16);
+			$attachment1=Input::upload('attachment1',path('storage').'attachments/',$name.'.'.$type);
 			$caption1=Input::get('caption1');
-			$file1=new Attachment(array('user_id'=>$userid,'link'=>'attachment1'));
+			$file1=new Attachment(array('user_id'=>$userid,'link'=>path('storage').'attachments/'.$name.'.'.$type));
 			$prob->attachments()->insert($file1,array('description'=>$caption1)); 
 		}
-		
+		*/
 		
 		
 		//need to add link to problem_attachments with caption
@@ -109,6 +120,9 @@ class Problems_Controller extends Base_Controller
 		
 		return Redirect::to('problems/new')->with_input()->with('submitworked', true);
 	}
+	
+	
+	
 	
 	public function get_mine()
 	{
