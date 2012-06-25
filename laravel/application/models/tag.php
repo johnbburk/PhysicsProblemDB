@@ -20,6 +20,7 @@ class Tag extends Eloquent
 	{
 		$id=$this->get_attribute('id');
 		$tag=$this->get_attribute('tag');
-		return HTML::link('tags/singletag/'.$id, $tag);
+		//return HTML::link('tags/singletag/'.$id, $tag);
+		return HTML::link_to_action('tags@singletag', $tag, array($id));
 	}
 }

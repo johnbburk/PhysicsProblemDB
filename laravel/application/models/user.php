@@ -35,4 +35,12 @@ class User extends Eloquent
 	{
 		return $this->has_many('Comment');
 	}
+	
+	public function get_fullname()
+	{
+		$fullname=$this->get_attribute('firstname');
+		$fullname.=' ';
+		$fullname.=$this->get_attribute('lastname');
+		return $fullname;
+	}
 }

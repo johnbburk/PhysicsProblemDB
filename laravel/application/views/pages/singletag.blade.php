@@ -3,6 +3,7 @@
 @section('content')
 
 <h1>{{$tag->tag}}</h1>
+<p>Author: {{$tag->user->fullname}}</p>
 
 @foreach ($tag->problems AS $prob)
 

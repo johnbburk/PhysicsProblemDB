@@ -51,7 +51,10 @@ class Problem extends Eloquent
 	{
 		$id=$this->get_attribute('id');
 		$title=$this->get_attribute('title');
-		return HTML::link('problems/view/'.$id, $title);
+		//return HTML::link('problems/view/'.$id, $title);
+		// the line above works, but I think the below is what
+		// Laravel likes better.
+		return HTML::link_to_action('problems@view', $title, array($id));
 	}
 		
 }
