@@ -31,7 +31,7 @@
                         {{ HTML::link('admin/account/logout', 'Logout') }}
                 @endif</li>
               <li class="divider"></li>
-              <li><a href="#">Sign Out</a></li>
+              <li><a href="#">Profile</a></li>
             </ul>
           </div>
           <div class="nav-collapse">
