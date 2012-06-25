@@ -111,11 +111,11 @@ class Problems_Controller extends Base_Controller
 			if ($oldtags != 'none')
 			{
 
-				$prob->tags()->attach($oldtag, array('user_id'=>$userid));
+				
 
 				foreach($oldtags AS $oldtag)
 				{
-					$prob->tags()->attach($oldtag);
+					$prob->tags()->attach($oldtag, array('user_id'=>$userid));
 				};
 			};
 			
