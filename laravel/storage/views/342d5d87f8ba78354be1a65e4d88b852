@@ -1,0 +1,22 @@
+
+<?php \Laravel\Section::start('content'); ?>
+
+<h1><?php echo $tag->tag; ?></h1>
+<p>Author: <?php echo $tag->user->fullname; ?></p>
+
+<?php foreach ($tag->problems AS $prob): ?>
+
+<h2><?php echo $prob->link; ?></h2>
+<div>
+<?php echo $prob->question; ?>
+<p>
+<?php foreach ($prob->tags AS $tag): ?>
+<?php echo $tag->link; ?>, 
+<?php endforeach; ?>
+</div>
+<hr />
+<?php endforeach; ?>
+
+<?php \Laravel\Section::stop(); ?>
+
+<?php echo view('templates.main')->with(get_defined_vars())->render(); ?>

@@ -1,0 +1,43 @@
+
+<?php \Laravel\Section::start('content'); ?>
+
+<div>
+
+<?php echo Form::open('problems/view'); ?>
+<?php echo Form::hidden('probid', $prob->id); ?>
+<h1>
+<?php echo $prob->title; ?>
+</h1>
+<div>
+<?php echo $prob->question; ?>
+</div>
+<p>
+Your tags (these are the tags you have previously tagged for this problem, if
+	you want to untag this problem for that tag, check the box):
+<?php foreach ($mytags AS $tag): ?>
+<?php echo Form::checkbox('untags[]', $tag->id); ?><?php echo $tag->link; ?>, 
+<?php endforeach; ?>
+</p>
+<p>
+Others' tags (these are tags that others have associated with this problem - 
+	note that you can't untag them for this problem):
+<?php foreach ($othertags AS $tag): ?>
+<?php echo $tag->link; ?>, 
+<?php endforeach; ?>
+</p>
+
+<p>
+Unused tags: 
+<?php foreach ($unusedtags AS $unusedtag): ?> 
+<?php echo Form::checkbox('newtags[]',$unusedtag->id); ?><?php echo $unusedtag->link; ?>, 
+<?php endforeach; ?>
+</p>
+<p>
+New tags (separate with commas) <?php echo Form::text('newtaglist'); ?>
+</p>
+<?php echo Form::submit('submit'); ?>
+<?php echo Form::close(); ?>
+
+<?php \Laravel\Section::stop(); ?>
+
+<?php echo view('templates.main')->with(get_defined_vars())->render(); ?>
