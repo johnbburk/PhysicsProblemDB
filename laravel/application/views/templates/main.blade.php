@@ -31,13 +31,13 @@
                         {{ HTML::link('admin/account/logout', 'Logout') }}
                 @endif</li>
               <li class="divider"></li>
-              <li><a href="#">Profile</a></li>
+              <li>{{ HTML::link('admin/account/', 'Account') }}</li>
             </ul>
           </div>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"> {{HTML::link('/', 'Home')}}</li>
-              <li><a href="#about">About</a></li>
+              <li>{{HTML::link('/about', 'About')}}</li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->

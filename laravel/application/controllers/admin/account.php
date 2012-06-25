@@ -6,7 +6,8 @@ class Admin_Account_Controller extends Base_Controller
 	
 	public function get_index()
 	{
-		echo "this is the index page of account";
+		//echo "this is the index page of account";
+		return View::make('pages.account');
 	}
 	
 	// these next two do the newuser form
