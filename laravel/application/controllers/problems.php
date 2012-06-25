@@ -59,66 +59,69 @@ class Problems_Controller extends Base_Controller
 	
 	public function post_new()
 	{
-		$title = Input::get('title');
-		$content = Input::get('content');
-		$level = Input::get('level');
-		$type = Input::get('type');
-		$format = Input::get('format');
-		$newtags = Input::get('newtags');		
-		$userid=Auth::user()->id;
-		$prob = new Problem(array(
-			'title' => $title,
-			'question' => $content,
-			'problemtype_id' => $type,
-			'problemformat_id' => $format,
-			'problemlevel_id' => $level));
-		$user=User::find($userid);
-		$prob=$user->problems()->insert($prob);
+		$input = Input::all();
+		$rules = array(
+			'title' => 'required',
+			'attachment1' => 'image', 
+			'attachment2' => 'image', 
+			'attachment3' => 'image', 
+		);	
 		
-/* 		$prob->problemformat()->insert(array('format'=>$format));
-		$prob->problemtype()->insert(array('type'=>$type));
-		$prob->problemlevel()->insert(array('level'=>$level)); */
-		$newtagarray=explode(',',$newtags);
-		foreach($newtagarray AS $newtag)
+		$validation = Validator::make($input, $rules);
+		if ($validation->fails())
 		{
-			if ($newtag != '')
-			{
-				$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid));
-			};
-		};
-		
-		$oldtags = Input::get('tags', 'none');
-		if ($oldtags != 'none')
-		{
-			foreach($oldtags AS $oldtag)
-			{
-				$prob->tags()->attach($oldtag);
-			};
-		};
-		
-		//handle attachments
-		
-		$this->upload_attachment('attachment1', Input::get('caption1'), $prob, $userid);
-		$this->upload_attachment('attachment2', Input::get('caption2'), $prob, $userid);
-		$this->upload_attachment('attachment3', Input::get('caption3'), $prob, $userid);
-		
-		/*
-		if (array_get(Input::file('attachment1'), 'tmp_name'))
-		{
-			$type=File::extension(Input::File('attachment1.name'));
-			$name=substr(md5(time()),0,16);
-			$attachment1=Input::upload('attachment1',path('storage').'attachments/',$name.'.'.$type);
-			$caption1=Input::get('caption1');
-			$file1=new Attachment(array('user_id'=>$userid,'link'=>path('storage').'attachments/'.$name.'.'.$type));
-			$prob->attachments()->insert($file1,array('description'=>$caption1)); 
+			return Redirect::to('/')->with_input()->with_errors($validation);
 		}
-		*/
-		
-		
-		//need to add link to problem_attachments with caption
-		
-		
-		return Redirect::to('problems/new')->with_input()->with('submitworked', true);
+		else
+		{	
+			
+			$title = Input::get('title');
+			$content = Input::get('content');
+			$level = Input::get('level');
+			$type = Input::get('type');
+			$format = Input::get('format');
+			$newtags = Input::get('newtags');		
+			$userid=Auth::user()->id;
+			$prob = new Problem(array(
+				'title' => $title,
+				'question' => $content,
+				'problemtype_id' => $type,
+				'problemformat_id' => $format,
+				'problemlevel_id' => $level));
+			$user=User::find($userid);
+			$prob=$user->problems()->insert($prob);
+			
+	/* 		$prob->problemformat()->insert(array('format'=>$format));
+			$prob->problemtype()->insert(array('type'=>$type));
+			$prob->problemlevel()->insert(array('level'=>$level)); */
+			$newtagarray=explode(',',$newtags);
+			foreach($newtagarray AS $newtag)
+			{
+				if ($newtag != '')
+				{
+					$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid));
+				};
+			};
+			
+			$oldtags = Input::get('tags', 'none');
+			if ($oldtags != 'none')
+			{
+				foreach($oldtags AS $oldtag)
+				{
+					$prob->tags()->attach($oldtag);
+				};
+			};
+			
+			//handle attachments
+			
+			$this->upload_attachment('attachment1', Input::get('caption1'), $prob, $userid);
+			$this->upload_attachment('attachment2', Input::get('caption2'), $prob, $userid);
+			$this->upload_attachment('attachment3', Input::get('caption3'), $prob, $userid);
+			
+	
+			
+			return Redirect::to('problems/new')->with_input()->with('submitworked', true);
+			};
 	}
 	
 	
