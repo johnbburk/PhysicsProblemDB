@@ -24,6 +24,7 @@ class Attachment extends Eloquent
 	
 	public function get_imgsrc()
 	{
-		return "<img src=".URL::to_action('images@showimage', array($this->get_attribute('id')))." />";
+		$link=$this->get_attribute('id').'.'.$this->get_attribute('type');
+		return "<img src=".URL::to_action('images@showimage', array($link))." />";
 	}
 }

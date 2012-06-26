@@ -57,6 +57,24 @@ class Problems_Controller extends Base_Controller
 		}
 	}
 	
+	public function upload_attachment2($fname, $text, $prob, $userid)
+	{
+		if (array_get(Input::file($fname), 'tmp_name'))
+		{
+			$type=File::extension(array_get(Input::File($fname),'name'));
+			//$name=substr(md5(time()),0,16);
+			//$attachment1=Input::upload($fname,path('storage').'attachments/',$name.'.'.$type);
+			$caption1=Input::get('$text');
+			$file1=Attachment::create(array('user_id'=>$userid,'type'=>$type));
+			//$file1->save();
+			$prob->attachments()->attach($file1->id,array('description'=>$text,'user_id'=>$userid)); 
+			$name=$file1->id;//I've got to fix this so it gets the attachment id
+			//$name.=".$type";
+			$name="$name.$type";
+			$attachment1=Input::upload($fname,path('storage').'attachments/',$name);
+		}
+	}
+	
 	public function post_new()
 	{
 		$input = Input::all();
@@ -121,9 +139,9 @@ class Problems_Controller extends Base_Controller
 			
 			//handle attachments
 			
-			$this->upload_attachment('attachment1', Input::get('caption1'), $prob, $userid);
-			$this->upload_attachment('attachment2', Input::get('caption2'), $prob, $userid);
-			$this->upload_attachment('attachment3', Input::get('caption3'), $prob, $userid);
+			$this->upload_attachment2('attachment1', Input::get('caption1'), $prob, $userid);
+			$this->upload_attachment2('attachment2', Input::get('caption2'), $prob, $userid);
+			$this->upload_attachment2('attachment3', Input::get('caption3'), $prob, $userid);
 			
 	
 			

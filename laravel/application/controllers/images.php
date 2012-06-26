@@ -9,10 +9,11 @@ class Images_Controller extends Base_Controller
 		$this->filter('before', 'auth');
 	}
 	
-	public function get_showimage($id)
+	public function get_showimage($link)
 	{
-		$image=Attachment::find($id);
-		return Response::download($image->link);
+		
+		$ourpath=path('storage').'attachments/'.$link;
+		return Response::download($ourpath);
 		//echo $image->link;
 	}
 	

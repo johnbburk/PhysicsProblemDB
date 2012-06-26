@@ -47,7 +47,7 @@ $table->increments('id');
 
 $table->integer('user_id');
 
-$table->text('link');
+$table->text('type');
 
 $table->timestamps();
 
