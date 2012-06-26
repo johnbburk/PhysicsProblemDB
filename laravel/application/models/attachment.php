@@ -22,4 +22,8 @@ class Attachment extends Eloquent
 		return $this->has_many_and_belongs_to('Solution');
 	}
 	
+	public function get_imgsrc()
+	{
+		return "<img src=".URL::to_action('images@showimage', array($this->get_attribute('id')))." />";
+	}
 }

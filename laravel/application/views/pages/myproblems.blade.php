@@ -18,7 +18,8 @@
 			Attachments:
 				@foreach ($prob->attachments AS $attachment)
 					adding attachment
-					<img src="{{$attachment->link}}" alt="" width="" height="" border="0" /><br />
+					<!-- <img src="{{$attachment->link}}" alt="" width="" height="" border="0" /><br /> -->
+					{{$attachment->imgsrc}}
 
 
 
