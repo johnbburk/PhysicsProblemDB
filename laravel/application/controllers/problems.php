@@ -102,7 +102,7 @@ class Problems_Controller extends Base_Controller
 
 				if ($newtag != '')
 				{
-					$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid));
+					$tagmodel=$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid), array('user_id'=>$userid));
 				};
 
 			};
