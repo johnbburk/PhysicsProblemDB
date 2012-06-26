@@ -10,7 +10,7 @@
 	<body>
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
-				<div class="container">
+				<div class="container-fluid">
 					{{HTML::link('/', 'Problem Database', array('class' => 'brand'))}}
 					<ul class="nav">
 						<li <?php if (isset($navbar) && $navbar == 'home') echo "class='active'" ?> >{{HTML::link('/', 'Home')}}</li>
@@ -37,9 +37,9 @@
 			</div>
 		</div>
 
-		<div class="container-fluid">
+		<div class="container">
 			<div class="content">
-				<div class="row-fluid">
+				<div class="row">
 					<div class="span3">
 						<div class="well sidebar">
 							<ul class="nav nav-list">
