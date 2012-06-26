@@ -91,7 +91,6 @@
 </fieldset>
 
 {{Form::close()}}
-<p>
 
 
 
