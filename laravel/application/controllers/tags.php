@@ -15,6 +15,14 @@ class Tags_Controller extends Base_Controller
 		return View::make('pages.singletag')
 			->with('tag', $tag);
 	}
+	
+	public function get_browsetags()
+	{
+		$alltags=Tag::order_by('tag', 'asc')->get();
+		return View::make('pages.listtags')
+			->with('tags', $alltags)
+			->with('title', "All tags");
+	}
 }
 	
 	
