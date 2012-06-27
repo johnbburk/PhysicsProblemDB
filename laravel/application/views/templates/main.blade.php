@@ -74,7 +74,9 @@
 	    <h1>Problem Database</h1>
             <h2>Tailored problems for your students</h2>
  <div class="content">
+		<hr>
                 @yield('content')
+		<hr>
         </div>
 
 

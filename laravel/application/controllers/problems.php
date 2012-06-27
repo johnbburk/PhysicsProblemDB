@@ -142,6 +142,17 @@ class Problems_Controller extends Base_Controller
 			->with('probs', $myprobs);
 	}
 	
+	public function get_all()
+        {
+//                $myuser=Auth::user()->users;
+		$myuser = DB::table('users')->get();
+		$myprobs = DB::table('problems')->get();
+//		$myprobs=Auth::user()->problems;
+                return View::make('pages.allproblems')
+                        ->with('probs', $myprobs)
+			->with('users', $myuser);
+        }
+
 	
 	// Here I want to make view problem set where tags can be added
 	
