@@ -19,7 +19,7 @@
 				@foreach ($prob->attachments AS $attachment)
 					
 					<!-- <img src="{{$attachment->link}}" alt="" width="" height="" border="0" /><br /> -->
-					<div>{{$attachment->imgsrc}}{{$attachment->pivot->description}}</div> 	
+					<div>{{$attachment->imgsrc}}<div>{{$attachment->pivot->description}}</div></div> 	
 
 
 
