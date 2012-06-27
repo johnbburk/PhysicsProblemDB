@@ -144,13 +144,10 @@ class Problems_Controller extends Base_Controller
 	
 	public function get_all()
         {
-//                $myuser=Auth::user()->users;
-		$myuser = DB::table('users')->get();
-		$myprobs = DB::table('problems')->get();
-//		$myprobs=Auth::user()->problems;
+		$myprobs=Auth::user()->problems;
+//		$myprobs = DB::table('problems')->get();
                 return View::make('pages.allproblems')
-                        ->with('probs', $myprobs)
-			->with('users', $myuser);
+                        ->with('probs', $myprobs);
         }
 
 	
