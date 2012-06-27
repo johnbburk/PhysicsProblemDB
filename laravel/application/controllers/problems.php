@@ -169,6 +169,13 @@ class Problems_Controller extends Base_Controller
                         ->with('probs', $myprobs);
         }
 
+	public function get_last10()
+	{
+		$myprobs=Problem::order_by('created_at', 'desc')->take(10)->get();
+		return View::make('pages.myproblems')
+			->with('probs', $myprobs);
+	}
+	
 	
 	// Here I want to make view problem set where tags can be added
 	
