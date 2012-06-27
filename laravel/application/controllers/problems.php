@@ -68,7 +68,7 @@ class Problems_Controller extends Base_Controller
 			$file1=Attachment::create(array('user_id'=>$userid,'type'=>$type));
 			//$file1->save();
 			$prob->attachments()->attach($file1->id,array('description'=>$text,'user_id'=>$userid)); 
-			$name=$file1->id;//I've got to fix this so it gets the attachment id
+			$name=md5("ppdb".$file1->id);//I've got to fix this so it gets the attachment id
 			//$name.=".$type";
 			$name="$name.$type";
 			$attachment1=Input::upload($fname,path('storage').'attachments/',$name);

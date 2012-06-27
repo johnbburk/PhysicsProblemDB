@@ -44,7 +44,8 @@ class Admin_Account_Controller extends Base_Controller
 				'country' => Input::get('country')
 				));
 			$user->save();
-			echo "Cool, thanks for joining us!";
+			//echo "Cool, thanks for joining us!";
+			return Redirect::to('/');
 		};
 	}
 	
