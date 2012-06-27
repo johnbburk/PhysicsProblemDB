@@ -24,7 +24,7 @@ class Problem extends Eloquent
 	
 	public function attachments()
 	{
-		return $this->has_many_and_belongs_to('Attachment');
+		return $this->has_many_and_belongs_to('Attachment')->with(array('user_id', 'description'));
 	}
 	
 	public function probcomments()

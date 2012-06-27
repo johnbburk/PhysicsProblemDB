@@ -22,4 +22,9 @@ class Attachment extends Eloquent
 		return $this->has_many_and_belongs_to('Solution');
 	}
 	
+	public function get_imgsrc()
+	{
+		$link=md5("ppdb".$this->get_attribute('id')).'.'.$this->get_attribute('type');
+		return "<img src=".URL::to_action('images@showimage', array($link))." />";
+	}
 }
