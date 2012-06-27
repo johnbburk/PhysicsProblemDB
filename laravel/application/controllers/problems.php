@@ -144,8 +144,9 @@ class Problems_Controller extends Base_Controller
 	
 	public function get_all()
         {
-		$myprobs=Auth::user()->problems;
+//		$myprobs=Auth::user()->problems;
 //		$myprobs = DB::table('problems')->get();
+		$myprobs = Problem::all();
                 return View::make('pages.allproblems')
                         ->with('probs', $myprobs);
         }
