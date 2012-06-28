@@ -53,10 +53,10 @@
 		<span class="error">{{$errors->first('password')}}</span>
 			@endif
 		<p>{{ Form::label('password', 'Password') }}</p>
-		<p>{{ Form::text('password') }}</p>
+		<p>{{ Form::password('password') }}</p>
 		
 		<p>{{ Form::label('password_confirmation', 'Password again') }}</p>
-		<p>{{ Form::text('password_confirmation') }}</p>
+		<p>{{ Form::password('password_confirmation') }}</p>
 	
 		<!-- submit button -->
 		<p>{{ Form::submit('Login') }}</p>
