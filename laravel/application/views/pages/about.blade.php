@@ -2,6 +2,6 @@
 
 @section('content')
 	<h2>
-	This is the Physics Problem Database
+	This all about the Physics Problem Database
 	</h2>
 @endsection

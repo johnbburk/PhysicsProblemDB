@@ -15,7 +15,7 @@
 <ul class="nav">
 <li <?php if (isset($navbar) && $navbar == 'home') echo "class='active'" ?> >{{HTML::link('/', 'Home')}}</li>
 <li <?php if (isset($navbar) && $navbar == 'problems') echo "class='active'" ?> >{{ HTML::link('/problems', 'Problems') }}</li>
-<li <?php if (isset($navbar) && $navbar == 'about') echo "class='active'" ?> ><a href="#about">About</a></li>
+<li <?php if (isset($navbar) && $navbar == 'about') echo "class='active'" ?> >{{ HTML::link('/about', 'About') }}</li>
 </ul>
 
 <div class="btn-group pull-right">
