@@ -183,7 +183,14 @@ class Problems_Controller extends Base_Controller
 	{
 		$prob=Problem::find($probid);
 		$usedtags=$prob->tags()->lists('id');
-		$remainingtags=Tag::where_not_in('id',$usedtags)->get();
+		// here's where i need to see if there are any used tags
+		if (count($usedtags==0))
+		{
+			//this happens if the problem has no tags
+			$remainingtags=Tag::all();
+		} else {
+			$remainingtags=Tag::where_not_in('id',$usedtags)->get();
+		};
 		$usedtagmodels=$prob->tags;
 		$mine=array();
 		$others=array();
