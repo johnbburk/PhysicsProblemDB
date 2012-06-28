@@ -12,6 +12,17 @@
 	<div>
 		{{$prob->question}}
 	</div>
+	<div>
+	Attachments:
+				@foreach ($prob->attachments AS $attachment)
+					
+					<!-- <img src="{{$attachment->link}}" alt="" width="" height="" border="0" /><br /> -->
+					<div>{{$attachment->imgsrc}}<div>{{$attachment->pivot->description}}</div></div> 	
+
+
+
+				@endforeach
+	</div>
 	<p>
 	Your tags (these are the tags you have previously tagged for this problem, if
 	you want to untag this problem for that tag, check the box):

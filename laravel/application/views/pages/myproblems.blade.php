@@ -7,6 +7,13 @@
 			<h1>
 			{{$prob->link}}
 			</h1>
+			<div>uploaded by
+			@if ($prob->user->id == Auth::user()->id)
+			you 
+			@else
+			{{$prob->user->fullname}}
+			@endif
+			on {{$prob->created_at}}</div>
 			<div>
 			{{$prob->question}}
 			</div>
