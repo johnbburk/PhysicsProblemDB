@@ -38,3 +38,9 @@ return array(
 	'docs' => array('handles' => 'docs'),
 
 );
+
+return array(
+
+    'sparkdown' => array('auto' => true),
+
+);
