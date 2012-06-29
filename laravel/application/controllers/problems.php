@@ -169,9 +169,10 @@ class Problems_Controller extends Base_Controller
                         ->with('probs', $myprobs);
         }
 
-	public function get_last10()
+	public function get_last($num)
 	{
-		$myprobs=Problem::order_by('created_at', 'desc')->take(10)->get();
+		//$myprobs=Problem::order_by('created_at', 'desc')->take(10)->get();
+		$myprobs=Problem::paginate($num);
 		return View::make('pages.myproblems')
 			->with('probs', $myprobs);
 	}

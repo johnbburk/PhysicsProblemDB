@@ -2,7 +2,7 @@
 
 @section('content')
 	
-	@foreach ($probs AS $prob)
+	@foreach ($probs->results AS $prob)
 		<div>
 			<h1>
 			{{$prob->link}}
@@ -31,9 +31,9 @@
 
 
 				@endforeach
-					
+				</div>	
 		<hr/>
 	@endforeach
-
+	<p>{{$probs->links()}}</p>
 
 @endsection
