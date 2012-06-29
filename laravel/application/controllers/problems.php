@@ -173,7 +173,7 @@ class Problems_Controller extends Base_Controller
 	{
 		//$myprobs=Problem::order_by('created_at', 'desc')->take(10)->get();
 		$myprobs=Problem::paginate($num);
-		return View::make('pages.myproblems')
+		return View::make('pages.myproblemspaginate')
 			->with('probs', $myprobs);
 	}
 	
