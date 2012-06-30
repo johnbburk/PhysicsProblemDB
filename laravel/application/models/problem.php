@@ -56,5 +56,47 @@ class Problem extends Eloquent
 		// Laravel likes better.
 		return HTML::link_to_action('problems@view', $title, array($id));
 	}
+	
+	public function get_fixmathjax()
+	{
+		$text=$this->get_attribute('question');
+		$tmp=preg_split('/(\\\\[\(\[].*?\\\\[\)\]])/', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$replacestring="MaThJaX EqUaTiOn";
+		//print_r($tmp);
+		//return $tmp[1];
+		$number=floor(count($tmp)/2);
+		//echo "$s has $number equations in it";
+		$corrected='';
+		$eqns=array();
+		$urleqns=array();
+		for ($i=0; $i<$number; $i++) {
+			$corrected.=$tmp[$i*2];
+	//		$nobr=str_replace("<br />", "", $tmp[$i*2+1]);
+			$alt=$tmp[$i*2+1];
+			$eqns[]=$alt;
+			$coreqn=urlencode($alt);
+			$urleqns[]=$coreqn;
+			$corrected.=$replacestring;
+	//		$corrected.="<img src='http://euclid.hamline.edu/~arundquist/latex/readfilechecklogdb.php?mag=1&eqn=$coreqn' style='vertical-align:middle;' alt='$alt'/>";
+			};
+		$corrected.=$tmp[2*$number]; 
+		//return $corrected." num=$number"; 
+		$intermediate=Sparkdown\Markdown($corrected);
+		$tmp=preg_split('/('.$replacestring.')/', $intermediate, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+		//print_r($tmp);
+		//return $tmp[1];
+		$number=floor(count($tmp)/2);
+		//echo "$s has $number equations in it";
+		$corrected='';
+		for ($i=0; $i<$number; $i++) {
+			$corrected.=$tmp[$i*2];
+	//		
+			$corrected.=$eqns[$i];
+	//		$corrected.="<img src='http://euclid.hamline.edu/~arundquist/latex/readfilechecklogdb.php?mag=1&eqn=$coreqn' style='vertical-align:middle;' alt='$alt'/>";
+			};
+		$corrected.=$tmp[2*$number];
+		return $corrected;
+	}
 		
 }

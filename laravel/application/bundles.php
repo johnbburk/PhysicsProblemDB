@@ -36,11 +36,6 @@
 return array(
 
 	'docs' => array('handles' => 'docs'),
-
+	'sparkdown' => array('auto' => true),
 );
 
-return array(
-
-    'sparkdown' => array('auto' => true),
-
-);

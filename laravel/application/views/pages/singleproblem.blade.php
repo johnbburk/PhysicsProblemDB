@@ -10,7 +10,7 @@
 		{{$prob->title}}
 	</h1>
 	<div>
-		{{Sparkdown\markdown($prob->question)}}
+		{{$prob->fixmathjax}}
 	</div>
 	<div>
 	Attachments:

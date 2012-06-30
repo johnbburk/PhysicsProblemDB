@@ -8,7 +8,7 @@
 			{{$prob->link}}
 			</h1>
 			<div>
-			{{$prob->question}}
+			{{$prob->fixmathjax}}
 			</div>
 			Tags:
 				@foreach ($prob->tags AS $tag)
