@@ -10,7 +10,7 @@
 		{{$prob->title}}
 	</h1>
 	<div>
-		{{$prob->question}}
+		{{$prob->fixmathjax}}
 	</div>
 	<div>
 	Attachments:
