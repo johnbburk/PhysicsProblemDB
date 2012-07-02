@@ -11,6 +11,7 @@
 	</h1>
 	<div>
 		{{$prob->fixmathjax}}
+		
 	</div>
 	<div>
 	Attachments:
