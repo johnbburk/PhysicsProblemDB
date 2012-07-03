@@ -165,7 +165,7 @@ class Problems_Controller extends Base_Controller
 //		$myprobs=Auth::user()->problems;
 //		$myprobs = DB::table('problems')->get();
 		$myprobs = Problem::all();
-                return View::make('pages.allproblems')
+                return View::make('pages.myproblems')
                         ->with('probs', $myprobs);
         }
 
