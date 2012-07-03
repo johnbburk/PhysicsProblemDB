@@ -76,11 +76,11 @@
 	<div class="control-group">
 		{{Form::label('attachement', "Add attachments", array("class" => "control-label"))}}
 		<div class="controls attachment-block">
-			{{Form::file('attachment1')}}
-			Caption: {{Form::text('caption1',Input::old('caption1'))}}<br />
-			{{Form::file('attachment2')}}
-			Caption: {{Form::text('caption2',Input::old('caption2'))}}<br />
-			{{Form::file('attachment3')}}
+			{{Form::file('attachment1')}}<br />
+			Caption: {{Form::text('caption1',Input::old('caption1'))}}<br /><p>
+			{{Form::file('attachment2')}}<br />
+			Caption: {{Form::text('caption2',Input::old('caption2'))}}<br /><p>
+			{{Form::file('attachment3')}}<br />
 			Caption: {{Form::text('caption3',Input::old('caption3'))}}
 		</div>
 	</div>
