@@ -120,7 +120,8 @@ class Problems_Controller extends Base_Controller
 
 				if ($newtag != '')
 				{
-					$tagmodel=$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid), array('user_id'=>$userid));
+					$trimmedtag=trim($newtag);
+					$tagmodel=$prob->tags()->insert(array('tag' =>$trimmedtag, 'user_id' => $userid), array('user_id'=>$userid));
 				};
 
 			};
@@ -245,7 +246,7 @@ class Problems_Controller extends Base_Controller
 		{
 			if ($newtag != '')
 			{
-				$tagmodel=$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid), array('user_id'=>$userid));
+				$tagmodel=$prob->tags()->insert(array('tag' => trim($newtag), 'user_id' => $userid), array('user_id'=>$userid));
 			};
 		};
 		return Redirect::to('problems/view/'.$probid);
