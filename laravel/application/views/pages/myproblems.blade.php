@@ -32,6 +32,7 @@
 
 				@endforeach
 				</div>	
+				<p>{{$prob->addsollink}}</p>
 		<hr/>
 	@endforeach
 

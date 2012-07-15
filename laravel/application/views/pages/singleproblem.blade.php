@@ -48,6 +48,7 @@
 	<p>
 	New tags (separate with commas) {{Form::text('newtaglist')}}
 	</p>
+	<p>{{$prob->addsollink}}</p>
 	{{Form::submit('submit')}}
 	{{Form::close()}}
 </div>
