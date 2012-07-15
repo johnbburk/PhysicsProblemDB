@@ -25,7 +25,14 @@
 			{{Form::textarea('content',Input::old('content'), array("class" => "input-xlarge"))}}
 		</div>
 	</div>
-
+	
+	<div class="control-group">
+		{{Form::label('answer', "Answer", array("class" => "control-label"))}}
+		<div class="controls">
+			{{Form::textarea('answer',Input::old('content'), array("class" => "input-xlarge"))}}
+		</div>
+	</div>
+	
 
 	<hr />
 	<div class="control-group">

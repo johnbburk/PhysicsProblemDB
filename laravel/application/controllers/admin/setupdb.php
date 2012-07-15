@@ -119,6 +119,7 @@ $table->integer('user_id');
 
 $table->string('title', 100);
 $table->text('question');
+$table->text('answer');
 $table->integer('problemtype_id');
 $table->integer('problemlevel_id');
 $table->integer('problemformat_id');
