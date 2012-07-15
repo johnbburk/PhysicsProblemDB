@@ -95,6 +95,7 @@ class Problems_Controller extends Base_Controller
 			
 			$title = Input::get('title');
 			$content = Input::get('content');
+			$answer = Input::get('answer');
 			$level = Input::get('level');
 			$type = Input::get('type');
 			$format = Input::get('format');
@@ -103,6 +104,7 @@ class Problems_Controller extends Base_Controller
 			$prob = new Problem(array(
 				'title' => $title,
 				'question' => $content,
+				'answer' => $answer,
 				'problemtype_id' => $type,
 				'problemformat_id' => $format,
 				'problemlevel_id' => $level));
