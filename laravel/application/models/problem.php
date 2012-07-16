@@ -72,5 +72,8 @@ class Problem extends Eloquent
 		return mathjaxmarkdown::mjmd($text);
 		
 	}
+	
 		
+
+
 }
