@@ -16,7 +16,9 @@
 			on {{$prob->created_at}}</div>
 			<div>
 			{{$prob->fixmathjax}}
-			{{mathjaxmarkdown::mjmd($prob->answer)}}
+			</div>
+			<div class="answer">
+			Answer: {{mathjaxmarkdown::mjmd($prob->answer)}}
 			</div>
 			Tags:
 				@foreach ($prob->tags AS $tag)
