@@ -9,3 +9,7 @@ span.error{color: red;}
 .content h1 { margin-bottom:.5em; }
 
 form .attachment-block { line-height: 3em; }
+
+.answer{
+	color: red;
+}

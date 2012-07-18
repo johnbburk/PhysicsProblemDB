@@ -23,6 +23,7 @@
 
 
 				@endforeach
+				<p>{{$prob->addsollink}}</p>
 					
 		<hr/>
 	@endforeach

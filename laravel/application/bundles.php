@@ -4,7 +4,7 @@
 |--------------------------------------------------------------------------
 | Bundle Configuration
 |--------------------------------------------------------------------------
-|
+| comment
 | Bundles allow you to conveniently extend and organize your application.
 | Think of bundles as self-contained applications. They can have routes,
 | controllers, models, views, configuration, etc. You can even create

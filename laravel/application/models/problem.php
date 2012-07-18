@@ -57,11 +57,23 @@ class Problem extends Eloquent
 		return HTML::link_to_action('problems@view', $title, array($id));
 	}
 	
+	public function get_addsollink()
+	{
+		$id=$this->get_attribute('id');
+		//return HTML::link('problems/view/'.$id, $title);
+		// the line above works, but I think the below is what
+		// Laravel likes better.
+		return HTML::link_to_action('solutions@add', 'add solution', array($id));
+	}
+	
 	public function get_fixmathjax()
 	{
 		$text=$this->get_attribute('question');
 		return mathjaxmarkdown::mjmd($text);
 		
 	}
+	
 		
+
+
 }

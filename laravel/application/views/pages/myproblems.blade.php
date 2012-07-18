@@ -17,6 +17,9 @@
 			<div>
 			{{$prob->fixmathjax}}
 			</div>
+			<div class="answer">
+			Answer: {{mathjaxmarkdown::mjmd($prob->answer)}}
+			</div>
 			Tags:
 				@foreach ($prob->tags AS $tag)
 				{{$tag->link}}, 
@@ -32,6 +35,7 @@
 
 				@endforeach
 				</div>	
+				<p>{{$prob->addsollink}}</p>
 		<hr/>
 	@endforeach
 

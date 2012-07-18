@@ -95,6 +95,7 @@ class Problems_Controller extends Base_Controller
 			
 			$title = Input::get('title');
 			$content = Input::get('content');
+			$answer = Input::get('answer');
 			$level = Input::get('level');
 			$type = Input::get('type');
 			$format = Input::get('format');
@@ -103,6 +104,7 @@ class Problems_Controller extends Base_Controller
 			$prob = new Problem(array(
 				'title' => $title,
 				'question' => $content,
+				'answer' => $answer,
 				'problemtype_id' => $type,
 				'problemformat_id' => $format,
 				'problemlevel_id' => $level));
@@ -120,7 +122,8 @@ class Problems_Controller extends Base_Controller
 
 				if ($newtag != '')
 				{
-					$tagmodel=$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid), array('user_id'=>$userid));
+					$trimmedtag=trim($newtag);
+					$tagmodel=$prob->tags()->insert(array('tag' =>$trimmedtag, 'user_id' => $userid), array('user_id'=>$userid));
 				};
 
 			};
@@ -245,7 +248,7 @@ class Problems_Controller extends Base_Controller
 		{
 			if ($newtag != '')
 			{
-				$tagmodel=$prob->tags()->insert(array('tag' => $newtag, 'user_id' => $userid), array('user_id'=>$userid));
+				$tagmodel=$prob->tags()->insert(array('tag' => trim($newtag), 'user_id' => $userid), array('user_id'=>$userid));
 			};
 		};
 		return Redirect::to('problems/view/'.$probid);
