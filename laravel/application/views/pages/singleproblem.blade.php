@@ -6,24 +6,7 @@
 
 	{{Form::open('problems/view')}}
 	{{Form::hidden('probid', $prob->id)}}
-	<h1>
-		{{$prob->title}}
-	</h1>
-	<div>
-		{{$prob->fixmathjax}}
-		
-	</div>
-	<div>
-	Attachments:
-				@foreach ($prob->attachments AS $attachment)
-					
-					<!-- <img src="{{$attachment->link}}" alt="" width="" height="" border="0" /><br /> -->
-					<div>{{$attachment->imgsrc}}<div>{{$attachment->pivot->description}}</div></div> 	
-
-
-
-				@endforeach
-	</div>
+	@include('templates.problem')->with('notags', True)
 	<p>
 	Your tags (these are the tags you have previously tagged for this problem, if
 	you want to untag this problem for that tag, check the box):
