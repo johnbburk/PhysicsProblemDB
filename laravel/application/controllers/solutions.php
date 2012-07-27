@@ -73,4 +73,12 @@ class Solutions_Controller extends Base_Controller
 
 			};
 	}
+	
+	public function get_show($prob_id)
+	{
+		$prob=Problem::find($prob_id);
+		return View::make('pages.problemwithsolutions')
+			->with('prob', $prob);
+	}
+		
 }

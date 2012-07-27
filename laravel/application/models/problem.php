@@ -66,6 +66,13 @@ class Problem extends Eloquent
 		return HTML::link_to_action('solutions@add', 'add solution', array($id));
 	}
 	
+	public function get_showsollink()
+	{
+		$id=$this->get_attribute('id');
+		return HTML::link_to_action('solutions@show', 'show solutions', array($id));
+	}
+	
+	
 	public function get_fixmathjax()
 	{
 		$text=$this->get_attribute('question');
