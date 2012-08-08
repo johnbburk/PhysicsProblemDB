@@ -34,4 +34,8 @@
 
 		<p>{{$prob->addsollink}}</p>
 		<p>{{$prob->showsollink}}</p>
+		
+		@if($prob->user->id== Auth::user()->id)
+			<!-- delete this problem !-->
+			
 </div>	
