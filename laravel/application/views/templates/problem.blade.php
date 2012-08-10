@@ -34,4 +34,7 @@
 
 		<p>{{$prob->addsollink}}</p>
 		<p>{{$prob->showsollink}}</p>
+		@if (Auth::user()->is_active==2)
+		<p>{{$prob->deletelink}}</p>
+		@endif
 </div>	

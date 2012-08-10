@@ -253,6 +253,30 @@ class Problems_Controller extends Base_Controller
 		};
 		return Redirect::to('problems/view/'.$probid);
 	}
+	public function get_delete($probid)
+	{
+		if (Auth::user()->is_active==2)
+		{
+			$prob=Problem::find($probid);
+			return View::make('pages.deletepage')
+                        ->with('prob', $prob);
+                } else {
+                	echo "What the hell are you doing?";
+                };
+	}
+	public function post_delete($probid)
+	{
+		if (Auth::user()->is_active==2)
+		{
+			$prob=Problem::Find($probid);
+			$prob->attachments()->delete();
+			$prob->solutions()->delete();
+			$prob->delete();
+		} else {
+			echo "who the hell are you?";
+		};
+		return Redirect::to('home');
+	}
 }
 	
 	

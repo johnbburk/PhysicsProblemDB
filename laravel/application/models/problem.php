@@ -80,6 +80,12 @@ class Problem extends Eloquent
 		
 	}
 	
+	public function get_deletelink()
+	{
+		$id=$this->get_attribute('id');
+		return HTML::link_to_action('problems@delete', 'delete this problem', array($id));
+	}
+	
 		
 
 
