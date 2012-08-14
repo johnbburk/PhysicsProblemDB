@@ -252,7 +252,10 @@ class Problems_Controller extends Base_Controller
 			};
 		};
 		$newcomment=Input::get('comment');
-		$prob->comments()->insert(array('content'=>$newcomment, 'user_id'=>$userid));
+		if ($newcomment != '')
+		{
+			$prob->comments()->insert(array('content'=>$newcomment, 'user_id'=>$userid));
+		};
 		return Redirect::to('problems/view/'.$probid);
 	}
 	public function get_delete($probid)
