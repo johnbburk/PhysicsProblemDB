@@ -32,8 +32,20 @@
 	New tags (separate with commas) {{Form::text('newtaglist')}}
 	</p>
 	<p>{{$prob->addsollink}}</p>
+	<div>
+	<p>Add comment:</p>
+	{{Form::textarea('comment',Input::old('comment'), array("class" => "input-xlarge"))}}
+	</div>
 	{{Form::submit('submit')}}
 	{{Form::close()}}
+</div>
+
+<div>
+<p>Comments</p>
+@foreach ($prob->comments AS $comment)
+{{mathjaxmarkdown::mjmd($comment->content)}}
+submitted by: {{$comment->user->fullname}}
+@endforeach
 </div>
 
 @endsection

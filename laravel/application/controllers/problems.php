@@ -251,6 +251,8 @@ class Problems_Controller extends Base_Controller
 				$tagmodel=$prob->tags()->insert(array('tag' => trim($newtag), 'user_id' => $userid), array('user_id'=>$userid));
 			};
 		};
+		$newcomment=Input::get('comment');
+		$prob->comments()->insert(array('content'=>$newcomment, 'user_id'=>$userid));
 		return Redirect::to('problems/view/'.$probid);
 	}
 	public function get_delete($probid)

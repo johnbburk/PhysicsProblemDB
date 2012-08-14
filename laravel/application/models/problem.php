@@ -27,9 +27,9 @@ class Problem extends Eloquent
 		return $this->has_many_and_belongs_to('Attachment')->with(array('user_id', 'description'));
 	}
 	
-	public function probcomments()
+	public function comments()
 	{
-		return $this->has_many('Probcomment');
+		return $this->has_many('comment');
 	}
 	
 	public function problemformat()
