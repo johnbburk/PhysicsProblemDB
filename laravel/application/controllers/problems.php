@@ -188,12 +188,14 @@ class Problems_Controller extends Base_Controller
 		$prob=Problem::find($probid);
 		$usedtags=$prob->tags()->lists('id');
 		// here's where i need to see if there are any used tags
-		if (count($usedtags==0))
+		if (count($usedtags)==0)
 		{
 			//this happens if the problem has no tags
 			$remainingtags=Tag::all();
+			
 		} else {
 			$remainingtags=Tag::where_not_in('id',$usedtags)->get();
+			
 		};
 		$usedtagmodels=$prob->tags;
 		$mine=array();
@@ -276,6 +278,7 @@ class Problems_Controller extends Base_Controller
 			$prob=Problem::Find($probid);
 			$prob->attachments()->delete();
 			$prob->solutions()->delete();
+			$prob->tags()->delete();
 			$prob->delete();
 		} else {
 			echo "who the hell are you?";
