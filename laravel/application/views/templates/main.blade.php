@@ -55,6 +55,7 @@
 <li><a href="{{URL::to_action('tags@browsetags')}}"><i class="icon-list"></i> Browse tags</a></li>
 <li><a href="{{URL::to_action('problems@last', array(10))}}"><i class="icon-list"></i> Last 10 problems</a></li>
 <li><a href="{{URL::to_action('problems@all')}}"><i class="icon-list"></i> All problems</a></li>
+<li><a href="{{URL::to_action('search@tags')}}"><i class="icon-search"></i> Search by tag</a></li>
 @endif
 @yield_section
 </ul>
