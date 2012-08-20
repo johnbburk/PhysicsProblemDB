@@ -1,5 +1,4 @@
 <?php
-
 class Search_Controller extends Base_Controller
 {
 	public $restful=true;
@@ -63,5 +62,3 @@ class Search_Controller extends Base_Controller
 			->with('probs', $probs);
 	}
 }
-	
-	

@@ -59,7 +59,10 @@
 
 	<hr />
 
-
+	@if ($whatisthis=Session::get('whatisthis'))
+	<p>The "what is this?" tag has already been selected.</p>
+	{{Form::hidden('tags[]', "$whatisthis")}}
+@endif
 
 	<div class="control-group">
 		{{Form::label('newtags', "Tags", array("class" => "control-label"))}}
