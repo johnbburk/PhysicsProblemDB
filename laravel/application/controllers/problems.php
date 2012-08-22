@@ -127,7 +127,8 @@ class Problems_Controller extends Base_Controller
 
 				if ($newtag != '')
 				{
-					if (!($foundid=array_search($newtag, $existingtags)))
+					$foundid=array_search(trim($newtag), $existingtags);
+					if (!($foundid))
 					{
 						$trimmedtag=trim($newtag);
 						$tagmodel=$prob->tags()->insert(array('tag' =>$trimmedtag, 'user_id' => $userid), array('user_id'=>$userid));
