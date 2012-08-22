@@ -115,15 +115,25 @@ class Problems_Controller extends Base_Controller
 			$prob->problemtype()->insert(array('type'=>$type));
 			$prob->problemlevel()->insert(array('level'=>$level)); */
 			$newtagarray=explode(',',$newtags);
+			$existingtags=Tag::lists('tag', 'id');
 			foreach($newtagarray AS $newtag)
 			{
-
-
+				// here I want to deal with duplicates
+				// I need a list of existing tags
+				// that's the line above with 
+				// $existingtags=Tag::lists('tag', 'id')
+				// where 'id' is the key
+				
 
 				if ($newtag != '')
 				{
-					$trimmedtag=trim($newtag);
-					$tagmodel=$prob->tags()->insert(array('tag' =>$trimmedtag, 'user_id' => $userid), array('user_id'=>$userid));
+					if (!($foundid=array_search($newtag, $existingtags)))
+					{
+						$trimmedtag=trim($newtag);
+						$tagmodel=$prob->tags()->insert(array('tag' =>$trimmedtag, 'user_id' => $userid), array('user_id'=>$userid));
+					} else {
+						$prob->tags()->attach($foundid, array('user_id'=>$userid));
+					};
 				};
 
 			};
