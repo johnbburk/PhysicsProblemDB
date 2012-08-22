@@ -47,6 +47,7 @@ class Admin_Account_Controller extends Base_Controller
 			$user->save();
 			Auth::login($user->id);
 			return Redirect::to('/');
+			//return Redirect::back();
 			//echo "Cool, thanks for joining us!";
 			//return Redirect::to('/');
 		};
@@ -79,6 +80,7 @@ class Admin_Account_Controller extends Base_Controller
 		{
 			// it worked, redirect to the admin route
 			return Redirect::to('/');
+			//return Redirect::back();
 		}
 		else
 		{

@@ -3,10 +3,14 @@
 	{{$prob->link}}
 	</h1>
 	<div>uploaded by
-	@if ($prob->user->id == Auth::user()->id)
-	you 
+	@if (isset($public))
+		{{$prob->user->fullname}}
 	@else
-	{{$prob->user->fullname}}
+		@if ($prob->user->id == Auth::user()->id)
+			you 
+		@else
+			{{$prob->user->fullname}}
+		@endif
 	@endif
 	on {{$prob->created_at}}</div>
 	<div>
@@ -34,7 +38,9 @@
 
 		<p>{{$prob->addsollink}}</p>
 		<p>{{$prob->showsollink}}</p>
-		@if (Auth::user()->is_active==2)
-		<p>{{$prob->deletelink}}</p>
+		@if (!isset($public))
+			@if (Auth::user()->is_active==2)
+				<p>{{$prob->deletelink}}</p>
+			@endif
 		@endif
 </div>	
