@@ -4,10 +4,13 @@ class Images_Controller extends Base_Controller
 {
 	public $restful=true;
 	
-	public function __construct()
+	// I commented this out so that the equipment page
+	// can show images even to those no logged in
+	// -Andy
+	/* public function __construct()
 	{
 		$this->filter('before', 'auth');
-	}
+	} */
 	
 	public function get_showimage($link)
 	{
